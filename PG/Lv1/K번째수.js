@@ -2,9 +2,10 @@ function solution(array, commands) {
   let answer = [];
   
   for (let cmd of commands) {
-      const tmp = array.slice(cmd[0]-1, cmd[1])
+      const [sPos, ePos, pos] = cmd
+      const tmp = array.slice(sPos-1, ePos)
       tmp.sort((a, b) => a - b)
-      answer.push(tmp[cmd[2] - 1])
+      answer.push(tmp[pos - 1])
   }
   
   return answer;
