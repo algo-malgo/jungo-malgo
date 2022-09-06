@@ -1,4 +1,5 @@
 function solution(nums) {
-  const newNums = new Set(nums);
-  return newNums.size > nums.length / 2 ? nums.length / 2 : newNums.size;
+  const max = nums.length / 2;
+  const arr = [...new Set(nums)];
+  return arr.length > max ? max : arr.length;
 }
