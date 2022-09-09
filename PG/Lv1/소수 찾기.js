@@ -1,15 +1,14 @@
 function solution(n) {
-  let answer = 0;
+  const s = new Set();
+  s.add(2);
+  for (let i = 3; i <= n; i += 2)
+      s.add(i);
   
-  for (let i = 2; i <= n; i++) {
-      let prime = 1;
-      for (let j = 2; j <= i ** 0.5; j++) 
-          if (i % j === 0) {
-              prime = 0;
-              break;
-          }
-      if (prime) answer += 1;
-  }
+  for (let i = 3; i <= n ** 0.5; i += 2) 
+      if (s.has(i)) {
+           for (let j = i * 2; j <= n; j += i)  
+              s.delete(j);
+      }
   
-  return answer;
+  return s.size;
 }
