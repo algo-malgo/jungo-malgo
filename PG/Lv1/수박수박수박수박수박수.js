@@ -1,9 +1,3 @@
-function solution(n) {
-  let answer = '';
-  
-  for (let i = 0; i < n; i++) 
-      if (i % 2) answer += '박';
-      else answer += '수';
-  
-  return answer;
+function solution(n) {    
+  return '수박'.repeat(n / 2) + (n % 2 ? '수' : '');;
 }
