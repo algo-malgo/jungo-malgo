@@ -1,11 +1,9 @@
 function solution(s) {
-  let arr = s.split('');
-  let i = 1;
-  while (i < arr.length) {
-      if (arr[i - 1] === arr[i]) {
-          arr.splice(i - 1, 2);
-          i -= 1;
-      } else i += 1;
+  let stack = [];
+  for (let i = 0; i < s.length; i++) {
+      if (!stack.length) stack.push(s[i]);
+      else if (s[i] === stack[stack.length - 1]) stack.pop();
+      else stack.push(s[i]);     
   }
-  return arr.length ? 0 : 1;
+  return stack.length ? 0 : 1;
 }
