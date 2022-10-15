@@ -8,8 +8,7 @@ function solution(n, arr) {
     if (s1.length !== s2.length) {
       answer += "Impossible\n";
     } else {
-      const map1 = new Map();
-      const map2 = new Map();
+      const map1 = new Map(), map2 = new Map();
       for (let j = 0; j < s1.length; j++) {
         map1.set(s1[j], (map1.get(s1[j]) || 0) + 1);
         map2.set(s2[j], (map2.get(s2[j]) || 0) + 1);
