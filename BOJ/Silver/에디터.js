@@ -55,7 +55,6 @@ function solution(str, m, arr) {
         break;
     }
   }
-  console.log(dat);
   traversal();
 }
 
