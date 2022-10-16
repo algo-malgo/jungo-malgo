@@ -29,7 +29,6 @@ function traversal() {
 }
 
 function solution(str, m, arr) {
-  console.log(dat);
   let cursor = 0;
   for (let i = 0; i < str.length; i++) {
     insert(i, str[i]);
