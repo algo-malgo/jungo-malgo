@@ -1,18 +1,18 @@
 function solution(n, s) {
   if (n === 1) return s[1];
+  else if (n === 2) return s[1] + s[2];
 
-  const dp = Array.from({ length: n + 1 }, () => Array(3));
-  dp[1][1] = s[1];
-  dp[1][2] = 0;
-  dp[2][1] = s[2];
-  dp[2][2] = s[1] + s[2];
+  const dp = Array(n + 1);
+  dp[1] = s[1];
+  dp[2] = s[2];
+  dp[3] = s[3];
 
-  for (let i = 3; i <= n; i++) {
-    dp[i][1] = Math.max(dp[i - 2][1], dp[i - 2][2]) + s[i];
-    dp[i][2] = dp[i - 1][1] + s[i];
+  for (let i = 4; i <= n; i++) {
+    dp[i] = Math.min(dp[i - 2], dp[i - 3]) + s[i];
   }
 
-  return Math.max(dp[n][1], dp[n][2]);
+  const sum = s.reduce((acc, cur) => acc + cur, 0);
+  return sum - Math.min(dp[n - 1], dp[n - 2]);
 }
 
 const fs = require("fs");
