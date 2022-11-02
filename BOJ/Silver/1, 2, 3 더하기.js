@@ -1,20 +1,17 @@
 function solution(n, arr) {
   let answer = "";
-
-  for (let i = 0; i < n; i++) {
-    const dp = Array(arr[i] + 1);
-    dp[1] = 1;
-    dp[2] = 2;
-    dp[3] = 4;
-
-    for (let j = 4; j <= arr[i]; j++) {
-      dp[j] = dp[j - 1] + dp[j - 2] + dp[j - 3];
-    }
-
-    answer += dp[arr[i]] + "\n";
+  const dp = Array(11);
+  dp[1] = 1;
+  dp[2] = 2;
+  dp[3] = 4;
+  for (let i = 4; i < 11; i++) {
+    dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3];
   }
 
-  console.log(answer);
+  for (let i = 0; i < n; i++) {
+    answer += dp[arr[i]] + "\n";
+  }
+  return answer;
 }
 
 const fs = require("fs");
@@ -32,4 +29,4 @@ for (let i = 1; i <= n; i++) {
   arr.push(+input[i].trim());
 }
 
-solution(n, arr);
+console.log(solution(n, arr));
