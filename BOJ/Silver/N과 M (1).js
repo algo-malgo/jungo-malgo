@@ -6,7 +6,7 @@ function solution(k) {
     if (!isUsed[i]) {
       arr[k] = i;
       isUsed[i] = true;
-      answer.push(solution(k + 1, n, m));
+      answer.push(solution(k + 1));
       isUsed[i] = false;
     }
   }
