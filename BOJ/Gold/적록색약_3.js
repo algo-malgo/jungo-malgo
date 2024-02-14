@@ -1,4 +1,5 @@
-class Queue {
+/* === BFS === */
+/* class Queue {
   constructor() {
     this.queue = [];
     this.front = 0;
@@ -67,6 +68,46 @@ function solution(n, board) {
     line.map((color) => (color === "G" ? "R" : color))
   );
   console.log(bfs(n, convertGreenToRed));
+} */
+
+/* === DFS ==== */
+function dfs(x, y, board, visited, color) {
+  if (x < 0 || x >= n || y < 0 || y >= n) return false;
+  if (visited[x][y] || board[x][y] !== color) return false;
+
+  visited[x][y] = true;
+
+  for (let i = 0; i < 4; i++) {
+    const [nx, ny] = [x + dx[i], y + dy[i]];
+    dfs(nx, ny, board, visited, color);
+  }
+
+  return true;
+}
+
+function solution() {
+  let count1 = 0;
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      let color = board[i][j];
+      if (dfs(i, j, board, visited1, color)) {
+        count1 += 1;
+      }
+    }
+  }
+
+  let count2 = 0;
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      let color = convertBoard[i][j];
+      if (dfs(i, j, convertBoard, visited2, color)) {
+        count2 += 1;
+      }
+    }
+  }
+
+  console.log(count1);
+  console.log(count2);
 }
 
 const [n, ...input] = require("fs")
@@ -74,5 +115,20 @@ const [n, ...input] = require("fs")
   .toString()
   .trim()
   .split("\n");
+
 const board = input.map((line) => line.split(""));
-solution(n, board);
+const visited1 = Array.from({ length: n }, () =>
+  Array.from({ length: n }, () => false)
+);
+
+const convertBoard = board.map((line) =>
+  line.map((color) => (color === "G" ? "R" : color))
+);
+const visited2 = Array.from({ length: n }, () =>
+  Array.from({ length: n }, () => false)
+);
+
+const dx = [-1, 1, 0, 0];
+const dy = [0, 0, -1, 1];
+
+solution();
